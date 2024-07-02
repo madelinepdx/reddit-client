@@ -1,23 +1,26 @@
-import logo from './logo.svg';
+// src/App.js
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import PostsList from './components/PostsList';
+import { fetchPosts } from './features/posts/postsSlice';
 import './App.css';
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log('Fetching posts on App mount');
+    dispatch(fetchPosts('javascript'));
+  }, [dispatch]);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Reddit Client</h1>
       </header>
+      <main>
+        <PostsList />
+      </main>
     </div>
   );
 }

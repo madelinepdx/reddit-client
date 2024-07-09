@@ -11,15 +11,20 @@ function App() {
 
   useEffect(() => {
     console.log('Fetching posts on App mount');
-    dispatch(fetchPosts('longevity'));
+    dispatch(fetchPosts('javascript'));
   }, [dispatch]);
+
+  const onSearch = (searchTerm) => {
+    console.log('Searching for:', searchTerm);
+    dispatch(fetchPosts(searchTerm));
+  };
 
   return (
     <div className="App">
       <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
+        <img src={logo} className="App-logo" alt="logo" />
         <h1>RedditSeddit</h1>
-        <SearchBar /> {SearchBar}
+        <SearchBar onSearch={onSearch} />
       </header>
       <main>
         <PostsList />

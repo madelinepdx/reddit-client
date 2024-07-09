@@ -2,23 +2,22 @@ import React, { useState } from 'react';
 import './SearchBar.css';
 
 const SearchBar = ({ onSearch }) => {
-  const [input, setInput] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (input.trim() !== '') {
-      onSearch(input.trim());
-      setInput('');
+    if (onSearch) {
+      onSearch(searchTerm);
     }
   };
 
   return (
-    <form className="search-bar" onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <input
         type="text"
-        placeholder="Search for a subreddit..."
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
+        placeholder="Search..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
       />
       <button type="submit">Search</button>
     </form>
